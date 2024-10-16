@@ -1,0 +1,22 @@
+{
+  "name": "Bl0ckcha1nK33p3r",
+  "version": "1.0.0",
+  "description": "Update readMe",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Bl0ckcha1nK33p3r/Alexis-Mosquera"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.19.2",
+    "puppeteer": "latest"
+  },
+  "devDependencies": {
+    "eslint": "^7.30.0"
+  }
+}
